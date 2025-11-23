@@ -70,7 +70,7 @@ class HealthDashboardScreen extends ConsumerWidget {
                 error: (_, __) => const SizedBox.shrink(),
               ),
               const SizedBox(height: 12),
-              // Search
+              
               TextField(
                 decoration: InputDecoration(
                   hintText: 'Search metrics...',
@@ -84,7 +84,7 @@ class HealthDashboardScreen extends ConsumerWidget {
                     ref.read(searchQueryProvider.notifier).state = val,
               ),
               const SizedBox(height: 12),
-              // Filter chips
+              
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(

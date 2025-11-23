@@ -47,98 +47,203 @@ class MetricDetailScreen extends StatelessWidget {
   ],
       ),
       body: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        color: bgColor.withOpacity(0.3),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Hero(
-                  tag: 'metric_${metric.name}',
-                  child: Material(
-                    color: Colors.transparent,
-                    child: Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: bgColor,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment:
-                                  CrossAxisAlignment.start,
+  duration: const Duration(milliseconds: 300),
+  color: bgColor.withOpacity(0.3),
+  child: SafeArea(
+    child: SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Hero(
+              tag: 'metric_${metric.name}',
+              child: Material(
+                color: Colors.transparent,
+                child: Container(
+                  width: double.infinity,         
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: bgColor,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      
+                      Expanded(                   
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              metric.name,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  metric.name,
+                                  metric.value.toStringAsFixed(1),
                                   style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w700,
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                const SizedBox(height: 8),
-                                Row(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      metric.value.toStringAsFixed(1),
-                                      style: const TextStyle(
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 4),
-                                    Text(
-                                      metric.unit,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 6),
+                                const SizedBox(width: 4),
                                 Text(
-                                  'Normal range: ${metric.range}',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.grey.shade800,
-                                  ),
+                                  metric.unit,
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ],
                             ),
-                          ),
-                          const SizedBox(width: 12),
-                          StatusBadge(status: metric.status),
-                        ],
+                            const SizedBox(height: 6),
+                            Text(
+                              'Normal range: ${metric.range}',
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Colors.grey.shade800,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
+
+                      const SizedBox(width: 12),
+
+                      StatusBadge(status: metric.status),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 24),
-                const Text(
-                  'Trend',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                TrendChart(metric: metric),
-                const SizedBox(height: 24),
-                Text(
-                  _trendDescription(metric),
-                  style: const TextStyle(fontSize: 14),
-                ),
-              ],
+              ),
             ),
-          ),
+
+            const SizedBox(height: 24),
+
+            const Text(
+              'Trend',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+
+            const SizedBox(height: 8),
+
+            SizedBox(
+              height: 220,
+              child: TrendChart(metric: metric),
+            ),
+
+            const SizedBox(height: 24),
+
+            Text(
+              _trendDescription(metric),
+              style: const TextStyle(fontSize: 14),
+            ),
+          ],
         ),
       ),
+    ),
+  ),
+),
+      // body: AnimatedContainer(
+      //   duration: const Duration(milliseconds: 300),
+      //   color: bgColor.withOpacity(0.3),
+      //   child: SafeArea(
+      //     child: SingleChildScrollView(
+      //       padding: const EdgeInsets.all(16),
+      //       child: Column(
+      //         crossAxisAlignment: CrossAxisAlignment.start,
+      //         children: [
+      //           Hero(
+      //             tag: 'metric_${metric.name}',
+      //             child: Material(
+      //               color: Colors.transparent,
+      //               child: Container(
+      //                 padding: const EdgeInsets.all(16),
+      //                 decoration: BoxDecoration(
+      //                   color: bgColor,
+      //                   borderRadius: BorderRadius.circular(16),
+      //                 ),
+      //                 child: Row(
+      //                   crossAxisAlignment: CrossAxisAlignment.start,
+      //                   children: [
+      //                     Flexible(
+      //                       child: Column(
+      //                         crossAxisAlignment:
+      //                             CrossAxisAlignment.start,
+      //                         children: [
+      //                           Text(
+      //                             metric.name,
+      //                             style: const TextStyle(
+      //                               fontSize: 18,
+      //                               fontWeight: FontWeight.w700,
+      //                             ),
+      //                           ),
+      //                           const SizedBox(height: 8),
+      //                           Row(
+      //                             crossAxisAlignment:
+      //                                 CrossAxisAlignment.end,
+      //                             children: [
+      //                               Text(
+      //                                 metric.value.toStringAsFixed(1),
+      //                                 style: const TextStyle(
+      //                                   fontSize: 28,
+      //                                   fontWeight: FontWeight.bold,
+      //                                 ),
+      //                               ),
+      //                               const SizedBox(width: 4),
+      //                               Text(
+      //                                 metric.unit,
+      //                                 style: const TextStyle(
+      //                                   fontSize: 16,
+      //                                 ),
+      //                               ),
+      //                             ],
+      //                           ),
+      //                           const SizedBox(height: 6),
+      //                           Text(
+      //                             'Normal range: ${metric.range}',
+      //                             style: TextStyle(
+      //                               fontSize: 13,
+      //                               color: Colors.grey.shade800,
+      //                             ),
+      //                           ),
+      //                         ],
+      //                       ),
+      //                     ),
+      //                     const SizedBox(width: 12),
+      //                     StatusBadge(status: metric.status),
+      //                   ],
+      //                 ),
+      //               ),
+      //             ),
+      //           ),
+      //           const SizedBox(height: 24),
+      //           const Text(
+      //             'Trend',
+      //             style: TextStyle(
+      //               fontSize: 16,
+      //               fontWeight: FontWeight.w600,
+      //             ),
+      //           ),
+      //           const SizedBox(height: 8),
+      //           TrendChart(metric: metric),
+      //           const SizedBox(height: 24),
+      //           Text(
+      //             _trendDescription(metric),
+      //             style: const TextStyle(fontSize: 14),
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //   ),
+      // ),
     );
   }
 
