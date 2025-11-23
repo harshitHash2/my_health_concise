@@ -17,8 +17,8 @@ A new Flutter project:
 
 ####  Clone the repository
 ```bash
-git clone 
-cd MY_HEALTH_CONCISE
+git clone https://github.com/harshitHash2/my_health_concise.git
+cd my_health_concise
 ```
 
 #### Install dependencies
